@@ -8,31 +8,36 @@ const TODO = mongoose.model(
             type:String,
             trim:true,
             lowercase:true,
+            required: true,
             minlength:3, 
-            maxlength:100
+            maxlength:100 
         },
         title: {
             type:String,
             trim:true,
             lowercase:true,
+            required: true,
             minlength:3, 
             maxlength:100
         },
         status: {
             type:String,
             trim:true,
+            required: true,
             lowercase:true,
-            minlength:3, 
-            maxlength:25
+            enum: ["active", "in-progress", "overdue", "completed", "deleted"]
         },
         category: {
             type:String,
             trim:true,
+            required: true,
             lowercase:true,
             enum: ["work", "hobby", "task", "other"]
-        }
+        },
+        deletedAt : {type: Date},
+        completedAt : {type: Date}
 
-    }, {timeStamp: true})
+    }, {timestamps: true})
 );
 
 module.exports = TODO;

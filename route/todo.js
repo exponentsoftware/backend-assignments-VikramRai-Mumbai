@@ -12,7 +12,12 @@ module.exports = function(app) {
 
 app.get("/", todoController.homepage);
 app.post("/addTODO", todoController.newTODO);
+app.get("/getTODO", todoController.getTODO);
+app.get("/getTODO/:todoID", todoController.getTODO);
 app.post("/updateTODO", todoController.updateTODO);
+app.post("/updateTODO/:todoID", todoController.updateTODO);
+app.delete("/deleteTODO", todoController.deleteTODO);
+app.delete("/deleteTODO/:todoID", todoController.deleteTODO);
 
 
 }
