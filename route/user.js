@@ -10,7 +10,6 @@ module.exports = function(app) {
       next();
     });
 
-app.get("/", UserController.homepage);
 app.post("/addUser", userController.newUser);
 app.get("/getUser", userController.getUser);
 app.get("/getUser/:UserID", userController.getUser);

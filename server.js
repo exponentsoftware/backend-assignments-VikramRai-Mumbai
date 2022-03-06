@@ -20,6 +20,7 @@ const corsOptions = {
  app.use(bodyparser.urlencoded({extended: true }));
 //routes
 require("./route/todo")(app);
+require("./route/user")(app);
 
 const port = process.env.PORT || 3001; 
 //mongodb connect
