@@ -1,5 +1,36 @@
 const db = require("../model");
 const User = db.user;
+const passport = require('passport');
+
+exports.login = (req, res) => {
+    res.render('../views/login');
+    };
+exports.auth_google = (req, res) => {
+    passport.authenticate('google', { scope: [ 'email', 'profile' ] });
+    };   
+exports.auth_google_callback = (req, res) => {
+    passport.authenticate( 'google', {
+        successRedirect: '/dashboard',
+        failureRedirect: '/auth/google/failure'
+      })
+};
+exports.auth_google_failure = (req, res) => {
+    res.send('Failed to authenticate..');
+};
+exports.logout = (req, res) => {
+    req.logout();
+    req.session.destroy();
+    res.send('Goodbye!');
+    };
+exports.register = (req, res) => {
+        res.render('../views/register');
+    };    
+
+exports.dashboard = (req, res) => {
+    res.send(`Hello ${req.user.displayName}`);
+    };
+
+        
 
 exports.newUser = (req, res) => {
     const newUser = new User({

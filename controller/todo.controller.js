@@ -1,11 +1,6 @@
 const db = require("../model");
 const TODO = db.todo;
 
-exports.homepage = (req, res) => {
-res.status(200).send("<H1>Welcome, TODO Home Page Content</H1>");
-};
-
-
 exports.newTODO = (req, res) => {
     const newTODO = new TODO ({
        username: req.body.username,
