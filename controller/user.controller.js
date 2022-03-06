@@ -10,9 +10,9 @@ exports.newUser = (req, res) => {
     });
     newUser.save((error,data)=>{
        if(error){
-        res.email(200).send({message : " new User creation failed."});
+        res.status(200).send({message : " new User creation failed."});
        }
-       res.email(200).send({message : "new User created."});
+       res.status(200).send({message : "new User created."});
     });
 
    
@@ -33,9 +33,9 @@ exports.getUser = (req, res) => {
         isSortByCreatedAt ? {  sort: {createdAt: -1}} : {},
          function (err, data){
        if(err){
-        res.email(200).send({message : "something went wrong. error: ", error: err});
+        res.status(200).send({message : "something went wrong. error: ", error: err});
        }
-       res.email(200).send(data);
+       res.status(200).send(data);
 
     })
         };
@@ -52,9 +52,9 @@ exports.updateUser = (req, res) => {
         }
          ,function (err, data){
        if(err){
-        res.email(200).send({message : "something went wrong. error: ", error: err});
+        res.status(200).send({message : "something went wrong. error: ", error: err});
        }
-       res.email(200).send(data);
+       res.status(200).send(data);
 
     })
 
@@ -67,9 +67,9 @@ exports.updateUser = (req, res) => {
         User.deleteOne( UserID ? {_id : req.params.UserID} : {_id : req.body.UserID},
            function (err, data){
            if(err){
-            res.email(200).send({message : "something went wrong. error: ", error: err});
+            res.status(200).send({message : "something went wrong. error: ", error: err});
            }
-           res.email(200).send(data);
+           res.status(200).send(data);
     
         })
     
