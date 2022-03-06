@@ -41,7 +41,7 @@ const User = mongoose.model(
             enum: ["admin", "user"]
             }
        
-    },{ timestamps: ture})
+    },{ timestamps: true})
 );
 
 module.exports = User; 
