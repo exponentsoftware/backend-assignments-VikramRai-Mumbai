@@ -32,12 +32,13 @@ exports.getTODO = (req, res) => {
     const category = req.body.category;
     const status = req.body.status;
     const title = req.body.title;
+    const username = req.body.username;
     const createdAt = req.body.createdAt;
     const isSortByCreatedAt = req.body.isSortByCreatedAt;
     let filter = true;
-    if(!category && !status && !title && !createdAt){ filter = false}
+    if(!username &&!category && !status && !title && !createdAt){ filter = false}
     TODO.find( todoID ? {_id : req.params.todoID} :( 
-        filter ? { $or : [{ category : category}, { status : status}, { title : title}, {createdAt: createdAt}]} : {}),
+        filter ? { $or : [{ username : username}, { category : category}, { status : status}, { title : title}, {createdAt: createdAt}]} : {}),
         isSortByCreatedAt ? {  sort: {createdAt: -1}} : {},
          function (err, data){
        if(err){
