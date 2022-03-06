@@ -2,15 +2,15 @@ const db = require("../model");
 const User = db.user;
 
 exports.newUser = (req, res) => {
-    const newUser = new User ({
+    const newUser = new User({
        username: req.body.username,
        email: req.body.email,
        mobile: req.body.mobile,
-       role: req.body.role || "user"
+       role: "user"
     });
     newUser.save((error,data)=>{
        if(error){
-        res.status(200).send({message : " new User creation failed."});
+        res.status(200).send({message : " new User creation failed.", error : error});
        }
        res.status(200).send({message : "new User created."});
     });
