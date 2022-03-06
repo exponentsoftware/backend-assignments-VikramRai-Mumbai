@@ -2,7 +2,7 @@ const db = require("../model");
 const TODO = db.todo;
 
 exports.homepage = (req, res) => {
-res.status(200).send("Welcome, TODO Home Page Content");
+res.status(200).send("<H1>Welcome, TODO Home Page Content</H1>");
 };
 
 

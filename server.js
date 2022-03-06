@@ -24,7 +24,6 @@ require("./route/todo")(app);
 const port = process.env.PORT || 3001; 
 //mongodb connect
 const db = require("./model");
-const { isValidObjectId } = require("mongoose");
 const Mongourl = process.env.MONGODB_URL;
 db.mongoose.connect(Mongourl, {
    useNewUrlParser:true,
