@@ -11,7 +11,6 @@ const User = mongoose.model(
             trim:true,
             minlength:5,
             maxlength:100,
-            unique:true
               },
         email: {
             type:String,

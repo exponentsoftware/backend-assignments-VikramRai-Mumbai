@@ -11,8 +11,10 @@ exports.newUser = (req, res) => {
     newUser.save((error,data)=>{
        if(error){
         res.status(200).send({message : " new User creation failed.", error : error});
+       }else{
+        res.status(200).send({message : "new User created."});
        }
-       res.status(200).send({message : "new User created."});
+     
     });
 
    
@@ -35,7 +37,10 @@ exports.getUser = (req, res) => {
        if(err){
         res.status(200).send({message : "something went wrong. error: ", error: err});
        }
-       res.status(200).send(data);
+       else{
+        res.status(200).send(data);
+       }
+      
 
     })
         };
@@ -54,7 +59,10 @@ exports.updateUser = (req, res) => {
        if(err){
         res.status(200).send({message : "something went wrong. error: ", error: err});
        }
-       res.status(200).send(data);
+       else{
+        res.status(200).send(data);
+       }
+      
 
     })
 
@@ -69,7 +77,9 @@ exports.updateUser = (req, res) => {
            if(err){
             res.status(200).send({message : "something went wrong. error: ", error: err});
            }
-           res.status(200).send(data);
+           else{
+            res.status(200).send(data);
+           }
     
         })
     

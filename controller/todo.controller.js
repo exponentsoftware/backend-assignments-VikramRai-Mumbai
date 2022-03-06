@@ -17,7 +17,10 @@ exports.newTODO = (req, res) => {
        if(error){
         res.status(200).send({message : " new TODO creation failed."});
        }
-       res.status(200).send({message : "new TODO item created."});
+       else {
+        res.status(200).send({message : "new TODO item created."});
+       }
+       
     });
 
    
@@ -40,7 +43,9 @@ exports.getTODO = (req, res) => {
        if(err){
         res.status(200).send({message : "something went wrong. error: ", error: err});
        }
-       res.status(200).send(data);
+       else{
+        res.status(200).send(data);
+       }
 
     })
         };
@@ -59,7 +64,9 @@ exports.updateTODO = (req, res) => {
        if(err){
         res.status(200).send({message : "something went wrong. error: ", error: err});
        }
-       res.status(200).send(data);
+       else{
+        res.status(200).send(data);
+       }
 
     })
 
@@ -74,7 +81,9 @@ exports.updateTODO = (req, res) => {
            if(err){
             res.status(200).send({message : "something went wrong. error: ", error: err});
            }
-           res.status(200).send(data);
+           else{
+            res.status(200).send(data);
+           }
     
         })
     
