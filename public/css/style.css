@@ -1,4 +1,55 @@
-   
+body {
+  /* background-image: radial-gradient(
+    circle farthest-corner at center,
+    rgba(35, 89, 137, 1) 25%,
+    rgba(21, 83, 137, 1) 50%,
+    rgba(8, 76, 137, 1) 75%,
+    rgba(0, 73, 137, 1) 100%
+  ); */
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.3)
+    ),
+    url("../images/23.png");
+  background-color: #fff;
+  background-position: top;
+  /* background-position: inherit; */
+}
+a {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.btnStyle {
+  margin: 0 auto;
+  width: 30%;
+  border-radius: 15px 30px;
+  background-color: #6c757d;
+  color: #fff;
+}
+.btnStyle:hover {
+  transition: 0.8s ease-in-out;
+  background-color: #343a40;
+  color: #fff;
+}
+
+
+table th , table td{
+  text-align: center;
+}
+
+table tr:nth-child(even){
+  background-color: #BEF2F5
+}
+
+.pagination li:hover{
+  cursor: pointer;
+}
+  /* table tbody tr {
+    display: none;
+  } */
+
+
 .card-style {
     /* background-color: deeppink; */
     background-color: #fff;
@@ -6,25 +57,3 @@
   }
   
   
-  .like:a {
-    text-decoration: none;
-    color: black;
-  }
-  .like {
-  
-    border-radius: 10px;
-    margin: 40px;
-    display: inline-flex;
-    height: auto;
-    width: auto;
-    font-size: 65px;
-    background-color: #99CC00;
-    border: 2px solid white;
-    color: white;
-    transition: all 0.2s linear 0s;
-  }
-  
-  .like:hover {
-    background-color: white !important;
-    color: #99CC00;
-  }

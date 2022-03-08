@@ -1,6 +1,8 @@
 const db = require("../model");
 const User = db.user;
+const TODO = db.todo;
 const passport = require('passport');
+var moment = require('moment');
 
 exports.login = (req, res) => {
     res.render('../views/login');
@@ -27,7 +29,29 @@ exports.register = (req, res) => {
     };    
 
 exports.dashboard = (req, res) => {
-    res.send(`Hello,  ${req.user.displayName}`);
+    const todoID = req.params.todoID;
+    const category = req.body.category;
+    const status = req.body.status;
+    const title = req.body.title;
+    const username = req.body.username;
+    const createdAt = req.body.createdAt;
+    const isSortByCreatedAt = req.body.isSortByCreatedAt;
+    let filter = true;
+    if(!username &&!category && !status && !title && !createdAt){ filter = false}
+    TODO.find( todoID ? {_id : req.params.todoID} :( 
+        filter ? { $or : [{ username : username}, { category : category}, { status : status}, { title : title}, {createdAt: createdAt}]} : {}),
+        isSortByCreatedAt ? {  sort: {createdAt: -1}} : {},
+         function (err, data){
+       if(err){
+        res.status(200).send({message : "something went wrong. error: ", error: err});
+       }
+       else{
+        res.render('../views/dashboard', {displayName : req.user.displayName, todo : data, moment : moment});
+       }
+
+    })
+    
+    
     };
 
         
