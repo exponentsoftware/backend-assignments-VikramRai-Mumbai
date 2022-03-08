@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const validator=require('validator');
 
-const User = mongoose.model(
+const User = mongoose.model( 
     "User",
     new mongoose.Schema({
         username: {

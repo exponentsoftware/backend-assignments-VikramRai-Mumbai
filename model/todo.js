@@ -13,7 +13,7 @@ const TODO = mongoose.model(
             maxlength:100 
         },
         title: {
-            type:String,
+            type:String, 
             trim:true,
             lowercase:true,
             required: true,
