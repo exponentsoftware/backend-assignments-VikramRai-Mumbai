@@ -5,42 +5,10 @@ const session = require('express-session');
 const passport = require('passport');
 const bodyparser = require("body-parser");
 const cors = require("cors");
+//auth passport
+require('./controller/auth');
 //port
 const port = process.env.PORT || 3001; 
-//passport
-const GoogleStrategy = require('passport-google-oauth2').Strategy;
-
-const GOOGLE_CLIENT_ID = process.env.clientID;
-const GOOGLE_CLIENT_SECRET = process.env.clientSecret;  
-if(port === 3000){
-passport.use(new GoogleStrategy({
-  clientID: GOOGLE_CLIENT_ID,
-  clientSecret: GOOGLE_CLIENT_SECRET,
-  callbackURL: "http://localhost:3000/google/callback" ,
-  passReqToCallback: true,
-},
-function(request, accessToken, refreshToken, profile, done) {
-  return done(null, profile);
-}));
-}else{
-  passport.use(new GoogleStrategy({
-    clientID: GOOGLE_CLIENT_ID,
-    clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://todo-app-monoceros.herokuapp.com/google/callback" ,
-    passReqToCallback: true,
-  },
-  function(request, accessToken, refreshToken, profile, done) {
-    return done(null, profile);
-  }));
-}
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
-
 //cors
 const corsOptions = {
   origin: "https://soal-capstone-project.herokuapp.com"

@@ -27,7 +27,7 @@ exports.register = (req, res) => {
     };    
 
 exports.dashboard = (req, res) => {
-    res.send(`Hello ${req.user.displayName}`);
+    res.send(`Hello,  ${req.user.displayName}`);
     };
 
         

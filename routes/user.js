@@ -2,7 +2,7 @@
 const userController = require("../controller/user.controller");
 const passport = require('passport');
 const { authCheck } = require("../middleware");
-
+require("../controller/auth")
 module.exports = function(app) {
     app.use(function(req, res, next) {
       res.header(
@@ -16,11 +16,16 @@ app.get("/", userController.login);
 app.get('/auth/google',
   passport.authenticate('google', { scope: [ 'email', 'profile' ] }
 ));
-app.get("/google/callback", userController.auth_google_callback);
+app.get( '/google/callback',
+  passport.authenticate( 'google', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/auth/google/failure'
+  })
+);
 app.get("/auth/google/failure", userController.auth_google_failure);
 app.get("/logout", userController.logout);
 app.get("/register", userController.register);
-app.get("/dashboard", [authCheck.isLoggedIn], userController.dashboard);
+ app.get("/dashboard", [authCheck.isLoggedIn], userController.dashboard);
 app.post("/addUser",[authCheck.isLoggedIn], userController.newUser);
 app.get("/getUser",[authCheck.isLoggedIn], userController.getUser);
 app.get("/getUser/:UserID",[authCheck.isLoggedIn], userController.getUser);
