@@ -22,7 +22,7 @@ exports.auth_google_failure = (req, res) => {
 exports.logout = (req, res) => {
     req.logout();
     req.session.destroy();
-    res.send('Goodbye!');
+    res.redirect('/');
     };
 exports.register = (req, res) => {
         res.render('../views/register');
@@ -33,7 +33,7 @@ exports.dashboard = (req, res) => {
     const category = req.body.category;
     const status = req.body.status;
     const title = req.body.title;
-    const username = req.body.username;
+    const username = req.user.displayName;
     const createdAt = req.body.createdAt;
     const isSortByCreatedAt = req.body.isSortByCreatedAt;
     let filter = true;
