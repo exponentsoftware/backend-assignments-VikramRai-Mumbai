@@ -1,5 +1,6 @@
 const db = require("../model");
 const TODO = db.todo;
+var moment = require('moment');
 
 exports.newTODO = (req, res) => {
     const newTODO = new TODO ({
@@ -13,7 +14,7 @@ exports.newTODO = (req, res) => {
         res.status(200).send({message : " new TODO creation failed."});
        }
        else {
-        res.status(200).send({message : "new TODO item created."});
+        res.status(200).redirect("/dashboard");
        }
        
     });
@@ -21,6 +22,13 @@ exports.newTODO = (req, res) => {
    
 
     };
+
+    exports.newTODOForm = (req, res) => {
+      
+      res.render('../views/addTODOForm', {displayName : req.user.displayName,  moment : moment});
+  
+  
+      };
 
 exports.getTODO = (req, res) => {
     const todoID = req.params.todoID;
@@ -61,13 +69,25 @@ exports.updateTODO = (req, res) => {
         res.status(200).send({message : "something went wrong. error: ", error: err});
        }
        else{
-        res.status(200).send(data);
+        res.status(200).redirect("/dashboard");
        }
 
     })
 
       };
-
+      exports.updateTODOForm = (req, res) => {
+        const todoID = req.params.todoID;
+        TODO.findOne({_id : todoID},
+             function (err, data){
+           if(err){
+            res.status(200).send({message : "something went wrong. error: ", error: err});
+           }
+           else{
+            res.status(200).render("../views/updateTODOForm",{displayName : req.user.displayName, todo_id: todoID, username: data.username, title: data.title, category: data.category, status: data.status, createdAt: data.createdAt, moment : moment});
+           }
+    
+        })
+          };
 
 
       exports.deleteTODO = (req, res) => {
@@ -78,7 +98,7 @@ exports.updateTODO = (req, res) => {
             res.status(200).send({message : "something went wrong. error: ", error: err});
            }
            else{
-            res.status(200).send(data);
+            res.redirect("/dashboard");
            }
     
         })

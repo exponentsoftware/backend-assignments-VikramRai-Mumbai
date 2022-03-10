@@ -10,7 +10,7 @@ body {
       rgba(255, 255, 255, 0.3),
       rgba(255, 255, 255, 0.3)
     ),
-    url("../images/23.png");
+    url("./images/bg.png");
   background-color: #fff;
   background-position: top;
   /* background-position: inherit; */

@@ -28,7 +28,7 @@ app.get("/register", userController.register);
  app.get("/dashboard", [authCheck.isLoggedIn], userController.dashboard);
 app.post("/addUser",[authCheck.isLoggedIn], userController.newUser);
 app.get("/getUser",[authCheck.isLoggedIn], userController.getUser);
-app.get("/getUser/:UserID",[authCheck.isLoggedIn], userController.getUser);
+app.get("/getUser/:UserID",[authCheck.isLoggedIn], userController.getUser); 
 app.post("/updateUser",[authCheck.isLoggedIn], userController.updateUser);
 app.post("/updateUser/:UserID",[authCheck.isLoggedIn], userController.updateUser);
 app.delete("/deleteUser",[authCheck.isLoggedIn], userController.deleteUser);

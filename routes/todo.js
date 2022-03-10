@@ -12,12 +12,14 @@ module.exports = function(app) {
     });
 
 app.post("/addTODO",[authCheck.isLoggedIn], todoController.newTODO);
+app.get("/addTODOForm",[authCheck.isLoggedIn], todoController.newTODOForm);
 app.get("/getTODO", [authCheck.isLoggedIn], todoController.getTODO);
 app.get("/getTODO/:todoID", todoController.getTODO);
 app.post("/updateTODO", [authCheck.isLoggedIn],todoController.updateTODO);
 app.post("/updateTODO/:todoID",[authCheck.isLoggedIn], todoController.updateTODO);
-app.delete("/deleteTODO",[authCheck.isLoggedIn], todoController.deleteTODO);
-app.delete("/deleteTODO/:todoID",[authCheck.isLoggedIn], todoController.deleteTODO);
+app.get("/updateTODOForm/:todoID",[authCheck.isLoggedIn], todoController.updateTODOForm);
+app.get("/deleteTODO",[authCheck.isLoggedIn], todoController.deleteTODO);
+app.get("/deleteTODO/:todoID",[authCheck.isLoggedIn], todoController.deleteTODO);
 
 
 }

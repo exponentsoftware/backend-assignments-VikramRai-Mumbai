@@ -64,91 +64,29 @@
           <div class="pt-0 ps-5 pe-5 pb-4 display-3 text-center">TODO. APP</div>
       </div>
       <div class="row" id="inputDiv">
-       <a href="/addTODOForm" ><button  data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btnStyle mt-2" >Add TODO</button></a>
+        <form action="/updateTODO/<%= todo_id %>" method="post">
+        <input type="text" value="<%= username %>" name="username" id="username"  placeholder="User Name" class="form-control m-auto" disabled/>
+        <input type="text" value="<%= title %>" name="title" id="title" placeholder="Ex. shopping" class="form-control m-auto" />
+        <select name="category" class="form-select" aria-label="Default select example">
+            <option value="work" <% if(category == "work"){ %>selected<% }%>>Work</option>
+            <option value="hobby" <% if(category == "hobby"){ %>selected<% }%>>Hobby</option>
+            <option value="task" <% if(category == "task"){ %>selected<% }%>>Task</option>
+            <option value="other" <% if(category == "other"){ %>selected<% }%>>Other</option>
+          </select>
+          <select name="status" class="form-select" aria-label="Default select example">
+            <option value="active" <% if(status == "active"){ %>selected<% }%>>active</option>
+            <option value="in-progress" <% if(status == "in-progress"){ %>selected<% }%>>in-progress</option>
+            <option value="completed" <% if(status == "completed"){ %>selected<% }%>>completed</option>
+          </select>
+          <input type="text" value="<%= moment().format('Do MMMM, YYYY', createdAt) %>" name="createdAt" id="createdAt" placeholder="Ex. date" class="form-control m-auto" disabled/>
+       <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btnStyle mt-2" >Update TODO</button>
+       </form>
       </div>
     </div>
 
-    <div class="container mt-4" id="TodoDiv" style="">
-      <div class="row">
-        <div class="col m-auto">
-          <h3 class="p-1 text-muted text-center">My TODO LIST :</h3>
-           
-          <!-------------------->
-
-          <div class="container">
-            <h2>Select Number Of Rows</h2>
-                    <div class="form-group"> 	<!--		Show Numbers Of Rows 		-->
-                         <select class  ="form-control" name="state" id="maxRows">
-                             <option value="5000">Show ALL Rows</option>
-                             <option value="5">5</option>
-                             <option value="10">10</option>
-                            </select>
-                         
-                      </div>
-    
-    <table class="table table-striped table-class" id= "table-id">
-      
-      <thead>
-        <tr>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Status</th>
-            <th>CreatedAt</th>
-            <th>Actions</th>
-        </tr>
-        
-      </thead>
-      
-      <tbody>
-        <% todo.forEach(function(list) { %>
-        <tr>
-            <td><%= list.title %></td>
-            <td><%= list.category %></td>
-            <td><%= list.status %></td>
-            <td><%= moment().format('Do MMMM, YYYY', list.createdAt)  %></td>
-            <td> 
-              <a href=/updateTODOForm/<%= list.id %> ><i id="edit" value="<%= list.id %>" class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#exampleModalEdit" data-bs-placement="bottom" title="Edit Item"></i> 
-                <a href=/deleteTODO/<%= list.id %> ><i id="deletebtn" value=<%= list.id %> class="bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="#exampleModalDelete" data-bs-placement="bottom" title="Delete Item"></i>  </a></td>
-        </tr>
-        <% }) %>
-     
-          </tbody>
-    
-    </table>
-    
-    <!--		Start Pagination -->
-                <div class='pagination-container' >
-                    <nav>
-                      <ul class="pagination">
-                
-                <li data-page="prev" >
-                                         <span> < <span class="sr-only">(current)</span></span>
-                                        </li>
-                       <!--	Here the JS Function Will Add the Rows -->
-            <li data-page="next" id="prev">
-                                           <span> > <span class="sr-only">(current)</span></span>
-                                        </li>
-                      </ul>
-                    </nav>
-                </div>
-    
-    </div> 
-
-          <!--------------------->
-        
-
-        </div>
-      </div>
-    </div>
 
       
       
-
-
-
-
-
-
 
 
     <!-- Modal -->
@@ -161,52 +99,13 @@
           </div>
           <div class="modal-body">
 
-             Redirecting to New TODO page...
+             updating item...
 
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Modal for edit item -->
-    <div class="modal fade" id="exampleModalDelete" tabindex="-1" aria-labelledby="exampleModalLabelDelete" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalDeleteLabel">Delete TODO Item </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-  
-               Deleting the item...
-  
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-           </div>
-          </div>
-        </div>
-      </div>  
-    <!-- Modal for delete item -->
-    <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabelEdit" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalEditLabel">Edit TODO Item</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-  
-              Redirecting to edit page...
-  
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          </div>
-           </div>
-        </div>
-      </div>
     <!-- Modal -->
     <div class="modal fade" id="modalDevelope" tabindex="-1" aria-labelledby="modalDeveloper" aria-hidden="true">
       <div class="modal-dialog">

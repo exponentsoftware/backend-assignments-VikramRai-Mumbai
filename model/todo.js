@@ -25,7 +25,7 @@ const TODO = mongoose.model(
             trim:true,
             required: true,
             lowercase:true,
-            enum: ["active", "in-progress", "overdue", "completed", "deleted"]
+            enum: ["active", "in-progress", "completed", "deleted"]
         },
         category: {
             type:String,
